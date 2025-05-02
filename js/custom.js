@@ -1,17 +1,37 @@
 //menu toggle
-const menu = document.querySelector(".menu");
-const icon_menu = document.querySelector(".menu img");
+const menu = document.querySelector('.menu');
+const icon_menu = document.querySelector('.menu img');
+const nav = document.querySelector('.navi')
 
-menu.addEventListener("click", function(){
-  this.classList.toggle("active");
-  //조건문
-  // if(this.classList.contains('active')) {
-  //   icon.setAttribute("class","ri-close-line");
-  // } else {
-  //   icon.setAttribute("class","ri-menu-line");
-  // }
-  
-  this.classList.contains('active') ? icon_menu.setAttribute("src","images/close.svg") : icon_menu.setAttribute("src","images/menu.svg");
-  // 삼항 연산자
-  // this.classList.contains('active') 가 true 이면 icon.setAttribute("class","ri-close-line") ,, false면 : 뒤에 값 작성
+
+menu.addEventListener('click', function () {
+  this.classList.toggle('active');
+  const navHeight = nav.scrollHeight;
+
+  console.log(navHeight)
+  if(this.classList.contains('active')) {
+    icon_menu.setAttribute('src', 'images/close.svg');
+    nav.style.heigth = navHeight + 'px';
+  }
+  else {
+    icon_menu.setAttribute('src', 'images/menu.svg');
+    nav.style.height = 0;
+  }
+
+
+  // this.classList.contains('active')
+  //   ? icon_menu.setAttribute('src', 'images/close.svg')
+  //   : icon_menu.setAttribute('src', 'images/menu.svg');
+  // 삼항 연산자작성
+});
+
+// navigation Activeate
+const navs = document.querySelectorAll('.navi li');
+navs.forEach((nav, idx) => {
+  nav.addEventListener('click', function () {
+    navs.forEach((nav) => {
+      nav.classList.remove('active');
+    });
+    this.classList.add('active');
+  });
 });
